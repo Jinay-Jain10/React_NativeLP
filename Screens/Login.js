@@ -27,6 +27,7 @@ export default function Login({navigation}){
     const[password,setPassword]=useState("");
     const [error,setError]=useState({});
     const [showPassword,setShowPassword]=useState(true);
+    const[loading,setLoading]=useState(false);
    
     
     const validateForm = () => {
@@ -43,12 +44,17 @@ export default function Login({navigation}){
 
     const handleSubmit = () => {
       if (validateForm()) {
+        setLoading(true);
+        setTimeout(() => {
+          setLoading(false);
+          navigation.navigate("HomePage");
+        }, 2000);
         console.log("Submitted", email, password);
         setEmail("");
         setPassword("");
         setError({});
        
-        navigation.navigate("HomePage");
+        // navigation.navigate("HomePage");
         
       }
     };
@@ -92,15 +98,13 @@ export default function Login({navigation}){
                ) : null}
 
             
-          
+            {loading?(<ActivityIndicator size="large" color="#f75959"/>):(
             <Button
              color={"gray"}
              title="Login"
              onPress={handleSubmit }
-            //  onPress={()=>
-            //  navigation.navigate("HomePage")
-            //   }
             />
+            )}
             <Pressable 
             style={styles.register}
             onPress={()=>
