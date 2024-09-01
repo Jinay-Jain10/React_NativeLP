@@ -98,7 +98,7 @@ export default function Login({navigation}){
                ) : null}
 
             
-            {loading?(<ActivityIndicator size="large" color="#f75959"/>):(
+            {loading?(<ActivityIndicator size="large" color="grey"/>):(
             <Button
              color={"gray"}
              title="Login"

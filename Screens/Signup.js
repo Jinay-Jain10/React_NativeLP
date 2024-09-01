@@ -24,6 +24,7 @@ export default function HomeScreen({navigation}){
   const [error,setError]=useState({});
   const [name,setName]=useState("");
   const [age,setAge]=useState("");
+  const[loading,setLoading]=useState(false);
     
     const validateForm = () => {
       const reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
@@ -41,13 +42,16 @@ export default function HomeScreen({navigation}){
 
     const handleSubmit = () => {
       if (validateForm()) {
+        setLoading(true);
+        setTimeout(() => {
+          setLoading(false);
+          navigation.navigate("HomePage");
+        }, 2000);
         console.log("Submitted",name,age, email, password);
         setEmail("");
         setPassword("");
         setError({});
-        // setName("");
         setAge("");
-        navigation.navigate("HomePage");
         setName("");
       }
     };
@@ -114,15 +118,13 @@ export default function HomeScreen({navigation}){
           <Text style={styles.errorText}>{error.password}</Text>
         ) : null}
 
-
+            {loading?(<ActivityIndicator size="large" color="grey"/>):(
             <Button
              color={"gray"}
              title="Register"
              onPress={handleSubmit}
-            //  onPress={()=>
-            //  navigation.navigate("")
-            //   }
             />
+            )}
         </KeyboardAvoidingView>
         </ScrollView>
     )
