@@ -17,7 +17,7 @@ import {
   Alert} from 'react-native';
 
 
-  export default function HomePage(){
+  export default function Favourites(navigation){
     return(
         <View style={styles.container}> 
             <Text style={{fontSize:30}}>Favourites</Text>

@@ -7,6 +7,7 @@ import Signup from "./Screens/Signup";
 import HomePage from "./Screens/HomePage";
 import Favourites from "./Screens/Favourites";
 import Profile from "./Screens/Profile";
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import { 
   StyleSheet,
   ActivityIndicator,
@@ -29,6 +30,9 @@ const stack=createNativeStackNavigator()
 export default function App() {
   return (
     <NavigationContainer>
+      
+          
+
       <stack.Navigator
         initialRouteName='HomeScreen' 
         screenOptions={{

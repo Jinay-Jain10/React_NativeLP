@@ -16,7 +16,7 @@ import {
   ImageBackground, 
   Alert} from 'react-native';
 
-export default function HomePage(){
+export default function Profile(navigation){
     return(
         <View style={styles.container}> 
             <Text style={{fontSize:30}}>Profile</Text>

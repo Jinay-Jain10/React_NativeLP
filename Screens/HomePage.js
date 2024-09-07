@@ -18,47 +18,44 @@ import {
   Image, 
   ImageBackground, 
   Alert} from 'react-native';
-  import Favourites from "./Screens/Favourites";
-  import Profile from "./Screens/Profile";
+import Favourites from './Favourites';
+import Profile from './Profile'
+
+const HomePageTab=createBottomTabNavigator();
+// const screenOptions={
+//   tabBarShowLabel:false,
+//   headerShown:false,
+//   tabBarStyle:{
+//     position:'absolute',
+//     height:60,
+//     background:'#fff',
+//     bottom:0,
+//     right:0,
+//     left:0,
+//     elevation:0
+//   }
+// }
 
 
-const Tab=createBottomTabNavigator();
-const screenOptions={
-  tabBarShowLabel:false,
-  headerShown:false,
-  tabBarStyle:{
-    position:'absolute',
-    height:60,
-    background:'#fff',
-    bottom:0,
-    right:0,
-    left:0,
-    elevation:0
-  }
-}
-
-
-  export default function HomePage(){
+  export default function HomePage(navigation){
     return(
-        <NavigationContainer>
-          <Tab.Navigator screenOptions={screenOptions}>
-            <Tab.screen name="HomePage" component={HomePage}/>
-            <Tab.screen name="Favourites" component={Favourites}/>
-            <Tab.screen name="Profile" component={Profile}/>
-          </Tab.Navigator>
-        </NavigationContainer>
-        // <View style={styles.container}> 
-        //     <Text style={{fontSize:30}}>Welcome !!</Text>
-        // </View>
+      <View>
+        <Text>WELCOME</Text>
+      </View>
+          // <HomePageTab.Navigator screenOptions={{ headerShown: false }}>
+          //   <HomePageTab.Screen name="HomePage" component={HomePage}/>
+          //   <HomePageTab.Screen name="Favourites" component={Favourites}/>
+          //   <HomePageTab.Screen name="Profile" component={Profile}/>
+          // </HomePageTab.Navigator>
     )
   }
 
-  const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      backgroundColor: 'white',
-      alignItems: 'center',
-      justifyContent: 'center',
-      paddingVertical:50,
-    }
-});   
+//   const styles = StyleSheet.create({
+//     container: {
+//       flex: 1,
+//       backgroundColor: 'white',
+//       alignItems: 'center',
+//       justifyContent: 'center',
+//       paddingVertical:50,
+//     }
+// });   
