@@ -19,17 +19,17 @@ import {
 // 18 and 24 is used as hook for navigation .... useNavigation hook can be used in other components as well hence is a more flexible option
 // otherwise pass prop navigation in the main function as in 23..... the prop can only be used in the same component for example- here it can only be used in the Screens component
 
-const logoImage=require("./image.png")
+const logoImage=require("./image2.png")
 export default function HomeScreen({navigation}){
     // const navigation=useNavigation();
     return(
         <View style={styles.container}>
-            <Image source={logoImage}/>
-            <Text style={styles.text}>Hello,Welcome</Text>
+            <Image style={styles.image} source={logoImage}/>
+            <Text style={styles.text}>MoviesNow</Text>
             <Text style={styles.content}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis quis quam vehicula, consequat leo in, ultrices felis. Proin non consequat justo. Phasellus eu cursus dui. Aliquam ac sollicitudin lorem. Cras orci libero, consequat vitae justo vel, ornar</Text>
             <Button
             style={styles.button}
-            color={"grey"}
+            color={"purple"}
              title="Start"
              onPress={()=>
              navigation.navigate("Login")
@@ -42,7 +42,7 @@ export default function HomeScreen({navigation}){
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'white',
+    backgroundColor: 'black',
     alignItems: 'center',
     justifyContent: 'center',
     paddingVertical:50,
@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
   },
   text:{
     fontSize:30,
-    color:"black",
+    color:"white",
     marginBottom:20,
     justifyContent:'center',
     alignItems:'center',
@@ -60,8 +60,12 @@ const styles = StyleSheet.create({
     paddingHorizontal:25,
     paddingBottom:35,
     textAlign:'center',
-    color:'black'
+    color:'white'
   },
-  
+  image:{
+    flex: 1,
+    resizeMode: 'contain',
+    margin:30
+  }
 });
 

@@ -62,10 +62,13 @@ export default function Login({navigation}){
 
     return(
         <View style={styles.container}>
+          <Image source={require("./background_image.png")}  style={styles.backgroundImage}/>
+          <View style={styles.back}>
+          <Text style={{fontSize:30 , marginBottom:50, color:'white'}}>Welcome Back</Text>
             <Text style={styles.textEmail}>Enter Your Email:</Text>
             <TextInput 
               style={styles.textInput} 
-              placeholder='Email ID'
+
               value={email}
               onChangeText={(text)=>setEmail(text)}
               autoCapitalize="none"
@@ -78,7 +81,6 @@ export default function Login({navigation}){
             <Text style={styles.textEmail}>Enter Your Password:</Text>      
             <TextInput 
               style={styles.textInput}
-              placeholder='Password'
               value={password}
               onChangeText={(text)=>setPassword(text)}
               autoCapitalize="none"
@@ -88,8 +90,8 @@ export default function Login({navigation}){
             <View style={styles.eye}>
             <TouchableOpacity  onPress={()=>{setShowPassword(!showPassword);}}>
               {showPassword ? (
-                <Entypo name='eye-with-line' size={24} color="black"/>
-              ) : ( <Entypo name="eye" size={24} color="black"/>)
+                <Entypo name='eye-with-line' size={24} color="white"/>
+              ) : ( <Entypo name="eye" size={24} color="white"/>)
               }
             </TouchableOpacity>
             </View>
@@ -98,9 +100,9 @@ export default function Login({navigation}){
                ) : null}
 
             
-            {loading?(<ActivityIndicator size="large" color="grey"/>):(
+            {loading?(<ActivityIndicator size="large" color="purple"/>):(
             <Button
-             color={"gray"}
+             color={"purple"}
              title="Login"
              onPress={handleSubmit }
             />
@@ -110,10 +112,10 @@ export default function Login({navigation}){
             onPress={()=>
              navigation.navigate("Signup")
               }>
-             <Text>New User? Register Now</Text>
+             <Text style={{color:'white'}}>New User? Register Now</Text>
             </Pressable>
             
-          
+            </View>
         </View>
         
     )
@@ -122,21 +124,21 @@ export default function Login({navigation}){
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'white',
+    backgroundColor: '#1a1a1c',
     alignItems: 'center',
     justifyContent: 'center',
     paddingVertical:50,
-    margin:30,
-    borderRadius:30
+    
   },
   textEmail:{
     fontSize:20,
+    color:'white',
   },
   textInput:{
     fontSize:20,
-    color:'black',
+    color:'white',
     borderWidth:2,
-    borderColor:'black',
+    borderColor:'white',
     marginBottom:20,
     marginTop:10,
     borderRadius:10,
@@ -146,7 +148,7 @@ const styles = StyleSheet.create({
   },
   register:{
     fontSize:35,
-    color:'black',
+    color:'white',
     marginTop:20,
     fontWeight:700,
   },
@@ -156,6 +158,8 @@ const styles = StyleSheet.create({
   },
   eye:{
     paddingLeft:160,
+    position:'absolute',
+    paddingTop:130
   },
   textInputPassword:{
     fontSize:40,
@@ -171,4 +175,14 @@ const styles = StyleSheet.create({
   passwordInput:{
     fontSize:20,
   },
+  backgroundImage:{
+    opacity:0.25,
+    position:'relative'
+  },
+  back:{
+    position:'absolute',
+    flex:1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  }
 });

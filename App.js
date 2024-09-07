@@ -30,7 +30,7 @@ export default function App() {
       <stack.Navigator
         initialRouteName='HomeScreen' 
         screenOptions={{
-        headerStyle:{backgroundColor:'lightblue',}, 
+        headerStyle:{backgroundColor:'purple',}, 
         headerTintColor:"white",
         headerTitleAlign:"center",
         headerTitleStyle:{fontWeight:"bold"},
@@ -39,12 +39,12 @@ export default function App() {
             <Text style={{color: "#fff", fontSize: 14}}>Menu</Text>
           </Pressable>
         ),
-        contentStyle:{
-          backgroundColor:"lightblue",
-        }
+        // contentStyle:{
+        //   backgroundColor:"black",
+        // }
       }}>
         <stack.Screen 
-          name="Home" 
+          name="MoviesNow" 
           component={HomeScreen}
         />
         <stack.Screen name="Login" component={Login}/>

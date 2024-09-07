@@ -14,7 +14,8 @@ import {
   TextInput,
   Image, 
   ImageBackground, 
-  Alert} from 'react-native';
+  Alert,TouchableOpacity} from 'react-native';
+  import {Entypo} from "@expo/vector-icons";
 
 
 export default function HomeScreen({navigation}){
@@ -25,6 +26,7 @@ export default function HomeScreen({navigation}){
   const [name,setName]=useState("");
   const [age,setAge]=useState("");
   const[loading,setLoading]=useState(false);
+  const [showPassword,setShowPassword]=useState(true);
     
     const validateForm = () => {
       const reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
@@ -60,12 +62,13 @@ export default function HomeScreen({navigation}){
     return(
       <ScrollView>
         <KeyboardAvoidingView style={styles.container}>
-            <Text style={{fontSize:30 , marginBottom:50}}>Create Account</Text>
+        <Image source={require("./background_image.png")}  style={styles.backgroundImage}/>
+        <View style={styles.back}>
+            <Text style={{fontSize:30 , marginBottom:50, color:'white'}}>Create Account</Text>
 
             <Text style={styles.textEmail}>Enter Your Name:</Text>
             <TextInput 
               style={styles.textInput} 
-              placeholder='Name'
               value={name}
               onChangeText={(text)=>setName(text)}
               autoCapitalize
@@ -80,7 +83,6 @@ export default function HomeScreen({navigation}){
             <Text style={styles.textEmail}>Enter Your Age:</Text>
             <TextInput 
               style={styles.textInput} 
-              placeholder='Age'
               value={age}
               onChangeText={(text)=>setAge(text)}
             />
@@ -92,7 +94,6 @@ export default function HomeScreen({navigation}){
             <Text style={styles.textEmail}>Enter Your Email:</Text>
             <TextInput 
               style={styles.textInput} 
-              placeholder='Email ID'
               value={email}
               onChangeText={(text)=>setEmail(text)}
               autoCapitalize="none"
@@ -107,24 +108,32 @@ export default function HomeScreen({navigation}){
             <Text style={styles.textEmail}>Enter Your Password:</Text>
             <TextInput 
               style={styles.textInput} 
-              placeholder='Password'
               value={password}
               onChangeText={(text)=>setPassword(text)}
               autoCapitalize="none"
               autoCorrect={false}
               secureTextEntry
             />
+            <View style={styles.eye}>
+            <TouchableOpacity  onPress={()=>{setShowPassword(!showPassword);}}>
+              {showPassword ? (
+                <Entypo name='eye-with-line' size={24} color="white"/>
+              ) : ( <Entypo name="eye" size={24} color="white"/>)
+              }
+            </TouchableOpacity>
+            </View>
               {error.password ? (
           <Text style={styles.errorText}>{error.password}</Text>
         ) : null}
 
-            {loading?(<ActivityIndicator size="large" color="grey"/>):(
+            {loading?(<ActivityIndicator size="large" color="purple"/>):(
             <Button
-             color={"gray"}
+             color={"purple"}
              title="Register"
              onPress={handleSubmit}
             />
             )}
+            </View>
         </KeyboardAvoidingView>
         </ScrollView>
     )
@@ -133,21 +142,20 @@ export default function HomeScreen({navigation}){
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'white',
+    backgroundColor: '#1a1a1c',
     alignItems: 'center',
     justifyContent: 'center',
-    paddingVertical:50,
-    margin:30,
-    borderRadius:30
+    paddingVertical:30,
   },
   textEmail:{
     fontSize:20,
+    color:'white'
   },
   textInput:{
     fontSize:20,
-    color:'black',
+    color:'white',
     borderWidth:2,
-    borderColor:'black',
+    borderColor:'white',
     marginBottom:20,
     marginTop:10,
     borderRadius:10,
@@ -164,5 +172,20 @@ const styles = StyleSheet.create({
   errorText: {
     color: "red",
     marginBottom: 10,
+  },
+  backgroundImage:{
+    opacity:0.25,
+    position:'relative'
+  },
+  back:{
+    position:'absolute',
+    flex:1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  eye:{
+    paddingLeft:160,
+    position:'absolute',
+    paddingTop:360
   },
 });
