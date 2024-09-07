@@ -1,10 +1,12 @@
 import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import HomeScreen from "./Screens/HomeScreen"
-import Login from "./Screens/Login"
-import Signup from "./Screens/Signup"
-import HomePage from './Screens/HomePage';
+import HomeScreen from "./Screens/HomeScreen";
+import Login from "./Screens/Login";
+import Signup from "./Screens/Signup";
+import HomePage from "./Screens/HomePage";
+import Favourites from "./Screens/Favourites";
+import Profile from "./Screens/Profile";
 import { 
   StyleSheet,
   ActivityIndicator,
@@ -50,6 +52,8 @@ export default function App() {
         <stack.Screen name="Login" component={Login}/>
         <stack.Screen name="Signup" component={Signup}/>
         <stack.Screen name="HomePage" component={HomePage}/>
+        <stack.Screen name="Favourites" component={Favourites}/>
+        <stack.Screen name="Profile" component={Profile}/>
       </stack.Navigator>
     </NavigationContainer>
   );
