@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { createStackNavigator } from '@react-navigation/native-stack';
 import HomeScreen from "./Screens/HomeScreen";
 import Login from "./Screens/Login";
 import Signup from "./Screens/Signup";
@@ -23,16 +23,17 @@ import {
   Image, 
   ImageBackground, 
   Alert} from 'react-native';
+import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 
 
 
-const stack=createNativeStackNavigator()
+const stack=createStackNavigator()
+const Tab=createMaterialBottomTabNavigator()
+
+
 export default function App() {
   return (
     <NavigationContainer>
-      
-          
-
       <stack.Navigator
         initialRouteName='HomeScreen' 
         screenOptions={{
@@ -56,10 +57,7 @@ export default function App() {
         <stack.Screen name="Login" component={Login}/>
         <stack.Screen name="Signup" component={Signup}/>
         <stack.Screen name="HomePage" component={HomePage}/>
-        <stack.Screen name="Favourites" component={Favourites}/>
-        <stack.Screen name="Profile" component={Profile}/>
       </stack.Navigator>
     </NavigationContainer>
   );
 }
-
