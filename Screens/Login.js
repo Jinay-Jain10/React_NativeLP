@@ -52,10 +52,7 @@ export default function Login({navigation}){
         console.log("Submitted", email, password);
         setEmail("");
         setPassword("");
-        setError({});
-       
-        // navigation.navigate("HomePage");
-        
+        setError({});        
       }
     };
 

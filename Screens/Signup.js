@@ -14,7 +14,8 @@ import {
   TextInput,
   Image, 
   ImageBackground, 
-  Alert,TouchableOpacity} from 'react-native';
+  Alert,
+  TouchableOpacity} from 'react-native';
   import {Entypo} from "@expo/vector-icons";
 
 
@@ -112,7 +113,7 @@ export default function HomeScreen({navigation}){
               onChangeText={(text)=>setPassword(text)}
               autoCapitalize="none"
               autoCorrect={false}
-              secureTextEntry
+              secureTextEntry={showPassword}
             />
             <View style={styles.eye}>
             <TouchableOpacity  onPress={()=>{setShowPassword(!showPassword);}}>

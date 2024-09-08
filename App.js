@@ -24,6 +24,7 @@ import {
   ImageBackground, 
   Alert} from 'react-native';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
+import {Entypo} from "@expo/vector-icons";
 
 
 
@@ -62,9 +63,45 @@ function StackNavigator(){
 function TabNavigator(){
   return(
     <Tab.Navigator>
-      <Tab.Screen name='Home' component={HomePage}/>
-      <Tab.Screen name='Profile' component={Profile}/>
-      <Tab.Screen name='Favourites' component={Favourites}/>
+      <Tab.Screen 
+      name='Home' 
+      component={HomePage}
+      options={{
+        tabBarIcon:({focused})=>{
+          return(
+            <View style={{alignItems:"center", justifyContent:"center"}}>
+              <Entypo name="home" size={27} color={focused ? "#16247d":"#111"}/>
+            </View>
+          )
+        }
+      }}
+      />
+      <Tab.Screen 
+      name='Favourites' 
+      component={Favourites}
+      options={{
+        tabBarIcon:({focused})=>{
+          return(
+            <View style={{alignItems:"center", justifyContent:"center"}}>
+              <Entypo name="star" size={27} color={focused ? "#16247d":"#111"}/>
+            </View>
+          )
+        }
+      }}
+      />
+      <Tab.Screen 
+      name='Profile' 
+      component={Profile}
+      options={{
+        tabBarIcon:({focused})=>{
+          return(
+            <View style={{alignItems:"center", justifyContent:"center"}}>
+              <Entypo name="user" size={27} color={focused ? "#16247d":"#111"}/>
+            </View>
+          )
+        }
+      }}
+      />
     </Tab.Navigator>
     )
 }
