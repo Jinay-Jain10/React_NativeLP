@@ -72,30 +72,6 @@ export default function App() {
   return (
     <NavigationContainer>
       <StackNavigator/>
-      {/* <stack.Navigator
-        initialRouteName='HomeScreen' 
-        screenOptions={{
-        headerStyle:{backgroundColor:'purple',}, 
-        headerTintColor:"white",
-        headerTitleAlign:"center",
-        headerTitleStyle:{fontWeight:"bold"},
-        headerRight:()=>(
-          <Pressable onPress={()=> console.warn("Menu button pressed")}>
-            <Text style={{color: "#fff", fontSize: 14}}>Menu</Text>
-          </Pressable>
-        ),
-        // contentStyle:{
-        //   backgroundColor:"black",
-        // }
-      }}>
-        <stack.Screen 
-          name="MoviesNow" 
-          component={HomeScreen}
-        />
-        <stack.Screen name="Login" component={Login}/>
-        <stack.Screen name="Signup" component={Signup}/>
-        <stack.Screen name="HomePage" component={HomePage}/>
-      </stack.Navigator> */}
     </NavigationContainer>
   );
 }
