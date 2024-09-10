@@ -19,7 +19,7 @@ import {
 // 18 and 24 is used as hook for navigation .... useNavigation hook can be used in other components as well hence is a more flexible option
 // otherwise pass prop navigation in the main function as in 23..... the prop can only be used in the same component for example- here it can only be used in the Screens component
 
-const logoImage=require("./image2.png")
+const logoImage=require("./homeimage.png")
 export default function HomeScreen({navigation}){
     // const navigation=useNavigation();
     return(

@@ -19,7 +19,7 @@ import {
 export default function Profile(navigation){
     return(
         <View style={styles.container}> 
-            <Text style={{fontSize:30}}>Profile</Text>
+            <Text style={{fontSize:30,color:'white'}}>Profile</Text>
         </View>
     )
 }
@@ -27,7 +27,7 @@ export default function Profile(navigation){
 const styles = StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor: 'white',
+      backgroundColor: 'black',
       alignItems: 'center',
       justifyContent: 'center',
       paddingVertical:50,

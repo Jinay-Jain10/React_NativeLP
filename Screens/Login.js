@@ -173,7 +173,7 @@ const styles = StyleSheet.create({
     fontSize:20,
   },
   backgroundImage:{
-    opacity:0.25,
+    opacity:0.3,
     position:'relative'
   },
   back:{
