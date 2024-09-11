@@ -29,7 +29,7 @@ export default function HomeScreen({navigation}){
             <Text style={styles.content}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis quis quam vehicula, consequat leo in, ultrices felis. Proin non consequat justo. Phasellus eu cursus dui. Aliquam ac sollicitudin lorem. Cras orci libero, consequat vitae justo vel, ornar</Text>
             <Button
             style={styles.button}
-            color={"purple"}
+            color={'#571919'}
              title="Start"
              onPress={()=>
              navigation.navigate("Login")

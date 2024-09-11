@@ -87,8 +87,9 @@ import axios from 'axios';
             />
             <View>
             <Text style={{fontSize:20,fontWeight:700,color:'white',paddingHorizontal:15}}>{item.title}</Text>
-            <Text style={{fontSize:8.5,flexShrink:1,color:'white',paddingHorizontal:15}}>{item.overview}</Text>
-            <Text style={{fontSize:10,flexShrink:1,fontWeight:600,color:'gray',paddingHorizontal:15,paddingTop:5}}>Release Date: {item.release_date}</Text>
+            <Text numberOfLines={3} style={{fontSize:10,flexShrink:1,color:'white',paddingVertical:5,paddingHorizontal:15,flex:1}}>{item.overview}</Text>
+            <Text style={{fontSize:10,flexShrink:1,fontWeight:600,color:'gray',paddingHorizontal:15,}}>Release Date: {item.release_date}</Text>
+            <Text style={{fontSize:10,flexShrink:1,fontWeight:600,color:'gray',paddingHorizontal:15,}}>Popularity: {item.popularity}</Text>
             </View>
           </View>}
           />

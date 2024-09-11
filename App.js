@@ -36,7 +36,7 @@ function StackNavigator(){
     <stack.Navigator
     initialRouteName='HomeScreen' 
     screenOptions={{
-    headerStyle:{backgroundColor:'purple',}, 
+    headerStyle:{backgroundColor:'#571919',}, 
     headerTintColor:"white",
     headerTitleAlign:"center",
     headerTitleStyle:{fontWeight:"bold"},
@@ -45,6 +45,11 @@ function StackNavigator(){
         <Text style={{color: "#fff", fontSize: 14}}>Menu</Text>
       </Pressable>
     ),
+    // headerLeft:()=>(
+    //   <Pressable onPress={()=> console.warn("Are you sure you want to go back")}>
+    //     <Text style={{color: "#fff", fontSize: 14}}>Back</Text>
+    //   </Pressable>
+    // )
     // contentStyle:{
     //   backgroundColor:"black",
     // }
@@ -70,7 +75,7 @@ function TabNavigator(){
         tabBarIcon:({focused})=>{
           return(
             <View style={{alignItems:"center", justifyContent:"center"}}>
-              <Entypo name="home" size={27} color={focused ? "#16247d":"#111"}/>
+              <Entypo name="home" size={27} color={focused ? "#571919":"#111"}/>
             </View>
           )
         }
@@ -83,7 +88,7 @@ function TabNavigator(){
         tabBarIcon:({focused})=>{
           return(
             <View style={{alignItems:"center", justifyContent:"center"}}>
-              <Entypo name="star" size={27} color={focused ? "#16247d":"#111"}/>
+              <Entypo name="star" size={27} color={focused ? "#571919":"#111"}/>
             </View>
           )
         }
@@ -96,7 +101,7 @@ function TabNavigator(){
         tabBarIcon:({focused})=>{
           return(
             <View style={{alignItems:"center", justifyContent:"center"}}>
-              <Entypo name="user" size={27} color={focused ? "#16247d":"#111"}/>
+              <Entypo name="user" size={27} color={focused ? "#571919":"#111"}/>
             </View>
           )
         }

@@ -59,7 +59,7 @@ export default function Login({navigation}){
 
     return(
         <View style={styles.container}>
-          <Image source={require("./background_image.png")}  style={styles.backgroundImage}/>
+          <Image source={require("./image.png")}  style={styles.backgroundImage}/>
           <View style={styles.back}>
           <Text style={{fontSize:30 , marginBottom:50, color:'white'}}>Welcome Back</Text>
             <Text style={styles.textEmail}>Enter Your Email:</Text>
@@ -97,9 +97,9 @@ export default function Login({navigation}){
                ) : null}
 
             
-            {loading?(<ActivityIndicator size="large" color="purple"/>):(
+            {loading?(<ActivityIndicator size="large" color="#571919"/>):(
             <Button
-             color={"purple"}
+             color={"gray"}
              title="Login"
              onPress={handleSubmit }
             />
@@ -173,7 +173,7 @@ const styles = StyleSheet.create({
     fontSize:20,
   },
   backgroundImage:{
-    opacity:0.3,
+    opacity:0.2,
     position:'relative'
   },
   back:{

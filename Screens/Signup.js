@@ -63,9 +63,9 @@ export default function HomeScreen({navigation}){
     return(
       <ScrollView>
         <KeyboardAvoidingView style={styles.container}>
-        <Image source={require("./background_image.png")}  style={styles.backgroundImage}/>
+        <Image source={require("./image.png")}  style={styles.backgroundImage}/>
         <View style={styles.back}>
-            <Text style={{fontSize:30 , marginBottom:50, color:'white'}}>Create Account</Text>
+            <Text style={{fontSize:30 , marginBottom:50,marginTop:50, color:'white'}}>Create Account</Text>
 
             <Text style={styles.textEmail}>Enter Your Name:</Text>
             <TextInput 
@@ -127,9 +127,9 @@ export default function HomeScreen({navigation}){
           <Text style={styles.errorText}>{error.password}</Text>
         ) : null}
 
-            {loading?(<ActivityIndicator size="large" color="purple"/>):(
+            {loading?(<ActivityIndicator size="large" color="#571919"/>):(
             <Button
-             color={"purple"}
+             color={"gray"}
              title="Register"
              onPress={handleSubmit}
             />
@@ -145,8 +145,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#1a1a1c',
     alignItems: 'center',
-    justifyContent: 'center',
-    paddingVertical:30,
   },
   textEmail:{
     fontSize:20,
@@ -175,7 +173,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   backgroundImage:{
-    opacity:0.25,
+    opacity:0.20,
     position:'relative'
   },
   back:{
@@ -187,6 +185,6 @@ const styles = StyleSheet.create({
   eye:{
     paddingLeft:160,
     position:'absolute',
-    paddingTop:360
+    paddingTop:410
   },
 });
