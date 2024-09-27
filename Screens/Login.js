@@ -1,5 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React, {useState} from 'react';
+import { createContext } from 'react';
 import { 
   StyleSheet,
   ActivityIndicator,
@@ -18,7 +19,6 @@ import {
   TouchableOpacity} from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import {Entypo} from "@expo/vector-icons";
-
 
 
 
@@ -59,9 +59,9 @@ export default function Login({navigation}){
 
     return(
         <View style={styles.container}>
-          <Image source={require("./image.png")}  style={styles.backgroundImage}/>
+          <Image   style={styles.backgroundImage}/>
           <View style={styles.back}>
-          <Text style={{fontSize:30 , marginBottom:50, color:'white'}}>Welcome Back</Text>
+          <Text style={{fontSize:38,fontWeight:600 , marginBottom:50, color:'black'}}>Welcome Back !!</Text>
             <Text style={styles.textEmail}>Enter Your Email:</Text>
             <TextInput 
               style={styles.textInput} 
@@ -87,8 +87,8 @@ export default function Login({navigation}){
             <View style={styles.eye}>
             <TouchableOpacity  onPress={()=>{setShowPassword(!showPassword);}}>
               {showPassword ? (
-                <Entypo name='eye-with-line' size={24} color="white"/>
-              ) : ( <Entypo name="eye" size={24} color="white"/>)
+                <Entypo name='eye-with-line' size={28} color="black"/>
+              ) : ( <Entypo name="eye" size={28} color="black"/>)
               }
             </TouchableOpacity>
             </View>
@@ -97,19 +97,22 @@ export default function Login({navigation}){
                ) : null}
 
             
-            {loading?(<ActivityIndicator size="large" color="#571919"/>):(
-            <Button
-             color={"gray"}
-             title="Login"
-             onPress={handleSubmit }
-            />
+            {loading?(<ActivityIndicator size="large" color="#8c7bba"/>):(
+            <TouchableOpacity
+            style={{height:40, width:100, backgroundColor:'#8c7bba',borderRadius:10 ,justifyContent:'center',alignItems:'center'}}
+             color={'black'}
+             onPress={handleSubmit}
+            > 
+            <Text style={{color:'white', fontSize:20 }}>Login</Text>
+            </TouchableOpacity>
             )}
+
             <Pressable 
             style={styles.register}
             onPress={()=>
              navigation.navigate("Signup")
               }>
-             <Text style={{color:'white'}}>New User? Register Now</Text>
+             <Text style={{color:'black'}}>New User? Register Now</Text>
             </Pressable>
             
             </View>
@@ -121,31 +124,31 @@ export default function Login({navigation}){
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#1a1a1c',
+    backgroundColor: '#fbfbf9',
     alignItems: 'center',
     justifyContent: 'center',
     paddingVertical:50,
     
   },
   textEmail:{
-    fontSize:20,
-    color:'white',
+    fontSize:22,
+    color:'black',
   },
   textInput:{
     fontSize:20,
-    color:'white',
+    color:'black',
     borderWidth:2,
-    borderColor:'white',
+    borderColor:'black',
     marginBottom:20,
     marginTop:10,
     borderRadius:10,
-    height:40,
-    width:200,
+    height:50,
+    width:250,
     paddingHorizontal:10
   },
   register:{
     fontSize:35,
-    color:'white',
+    color:'black',
     marginTop:20,
     fontWeight:700,
   },
@@ -154,9 +157,9 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   eye:{
-    paddingLeft:160,
+    paddingLeft:190,
     position:'absolute',
-    paddingTop:130
+    paddingTop:160
   },
   textInputPassword:{
     fontSize:40,

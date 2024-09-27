@@ -25,6 +25,7 @@ import {
   Alert} from 'react-native';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import {Entypo} from "@expo/vector-icons";
+import { InfoProvider,Info } from './Screens/Signup';
 
 
 
@@ -36,7 +37,7 @@ function StackNavigator(){
     <stack.Navigator
     initialRouteName='HomeScreen' 
     screenOptions={{
-    headerStyle:{backgroundColor:'#571919',}, 
+    headerStyle:{backgroundColor:'#8c7bba',}, 
     headerTintColor:"white",
     headerTitleAlign:"center",
     headerTitleStyle:{fontWeight:"bold"},
@@ -75,7 +76,7 @@ function TabNavigator(){
         tabBarIcon:({focused})=>{
           return(
             <View style={{alignItems:"center", justifyContent:"center"}}>
-              <Entypo name="home" size={27} color={focused ? "#571919":"#111"}/>
+              <Entypo name="home" size={27} color={focused ? "#8c7bba":"#111"}/>
             </View>
           )
         }
@@ -88,7 +89,7 @@ function TabNavigator(){
         tabBarIcon:({focused})=>{
           return(
             <View style={{alignItems:"center", justifyContent:"center"}}>
-              <Entypo name="star" size={27} color={focused ? "#571919":"#111"}/>
+              <Entypo name="star" size={27} color={focused ? "#8c7bba":"#111"}/>
             </View>
           )
         }
@@ -101,7 +102,7 @@ function TabNavigator(){
         tabBarIcon:({focused})=>{
           return(
             <View style={{alignItems:"center", justifyContent:"center"}}>
-              <Entypo name="user" size={27} color={focused ? "#571919":"#111"}/>
+              <Entypo name="user" size={27} color={focused ? "#8c7bba":"#111"}/>
             </View>
           )
         }
@@ -112,8 +113,10 @@ function TabNavigator(){
 }
 export default function App() {
   return (
+    <InfoProvider>
     <NavigationContainer>
       <StackNavigator/>
     </NavigationContainer>
+    </InfoProvider>
   );
 }

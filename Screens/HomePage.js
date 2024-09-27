@@ -72,7 +72,7 @@ import axios from 'axios';
 
     return(
       <View style={styles.container} >
-        <Text style={{fontSize:25,color:'white',alignItems:'center'}}>Popular Movies</Text>
+        <Text style={{fontSize:25,color:'black',alignItems:'center'}}>Popular Movies</Text>
         <View >
         {
           data.length ? 
@@ -86,8 +86,8 @@ import axios from 'axios';
             style={{width:100,height:100,borderRadius:10}}
             />
             <View>
-            <Text style={{fontSize:20,fontWeight:700,color:'white',paddingHorizontal:15}}>{item.title}</Text>
-            <Text numberOfLines={3} style={{fontSize:10,flexShrink:1,color:'white',paddingVertical:5,paddingHorizontal:15,flex:1}}>{item.overview}</Text>
+            <Text style={{fontSize:20,fontWeight:700,color:'black',paddingHorizontal:15}}>{item.title}</Text>
+            <Text numberOfLines={2} style={{fontSize:10,flexShrink:1,color:'black',paddingVertical:5,paddingHorizontal:15,flex:1}}>{item.overview}</Text>
             <Text style={{fontSize:10,flexShrink:1,fontWeight:600,color:'gray',paddingHorizontal:15,}}>Release Date: {item.release_date}</Text>
             <Text style={{fontSize:10,flexShrink:1,fontWeight:600,color:'gray',paddingHorizontal:15,}}>Popularity: {item.popularity}</Text>
             </View>
@@ -104,7 +104,7 @@ import axios from 'axios';
   const styles = StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor: 'black',
+      backgroundColor: 'white',
       paddingBottom:40,
       paddingTop:10,
       alignItems:'center'

@@ -1,5 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React, {useState} from 'react';
+import { createContext } from 'react';
 import { 
   StyleSheet,
   ActivityIndicator,
@@ -16,8 +17,19 @@ import {
   ImageBackground, 
   Alert,
   TouchableOpacity} from 'react-native';
-  import {Entypo} from "@expo/vector-icons";
 
+import {Entypo} from "@expo/vector-icons";
+
+
+export const Info= createContext();
+export const InfoProvider=({children})=>{
+  const [email,setEmail]=useState("");
+  return(
+    <Info.Provider value={{email,setEmail}}>
+      {children}
+    </Info.Provider>
+  )
+}
 
 export default function HomeScreen({navigation}){
 
@@ -61,11 +73,11 @@ export default function HomeScreen({navigation}){
 
 
     return(
+      <Info.Provider value={{ userEmail:email,setEmail }}>
       <ScrollView>
         <KeyboardAvoidingView style={styles.container}>
-        <Image source={require("./image.png")}  style={styles.backgroundImage}/>
-        <View style={styles.back}>
-            <Text style={{fontSize:30 , marginBottom:50,marginTop:50, color:'white'}}>Create Account</Text>
+        <View style={{flex:1,justifyContent:'center',alignItems:'center',position:'relative'}}>
+            <Text style={{fontSize:38,fontWeight:600 , marginBottom:50,marginTop:50, color:'black'}}>Create Account</Text>
 
             <Text style={styles.textEmail}>Enter Your Name:</Text>
             <TextInput 
@@ -118,8 +130,8 @@ export default function HomeScreen({navigation}){
             <View style={styles.eye}>
             <TouchableOpacity  onPress={()=>{setShowPassword(!showPassword);}}>
               {showPassword ? (
-                <Entypo name='eye-with-line' size={24} color="white"/>
-              ) : ( <Entypo name="eye" size={24} color="white"/>)
+                <Entypo name='eye-with-line' size={24} color="black"/>
+              ) : ( <Entypo name="eye" size={24} color="black"/>)
               }
             </TouchableOpacity>
             </View>
@@ -128,38 +140,42 @@ export default function HomeScreen({navigation}){
         ) : null}
 
             {loading?(<ActivityIndicator size="large" color="#571919"/>):(
-            <Button
-             color={"gray"}
-             title="Register"
+            <TouchableOpacity
+            style={{height:40, width:100, backgroundColor:'#8c7bba',borderRadius:10 ,justifyContent:'center',alignItems:'center'}}
+             color={'black'}
              onPress={handleSubmit}
-            />
+            > 
+            <Text style={{color:'white', fontSize:20 }}>Register</Text>
+            </TouchableOpacity>
             )}
             </View>
         </KeyboardAvoidingView>
         </ScrollView>
+        </Info.Provider>
     )
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#1a1a1c',
     alignItems: 'center',
+    justifyContent:'center',
+    paddingBottom:30
   },
   textEmail:{
     fontSize:20,
-    color:'white'
+    color:'black'
   },
   textInput:{
     fontSize:20,
-    color:'white',
+    color:'black',
     borderWidth:2,
-    borderColor:'white',
+    borderColor:'black',
     marginBottom:20,
     marginTop:10,
     borderRadius:10,
-    height:40,
-    width:200,
+    height:50,
+    width:250,
     paddingHorizontal:10
   },
   register:{
@@ -176,15 +192,9 @@ const styles = StyleSheet.create({
     opacity:0.20,
     position:'relative'
   },
-  back:{
-    position:'absolute',
-    flex:1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
   eye:{
-    paddingLeft:160,
+    paddingLeft:190,
     position:'absolute',
-    paddingTop:410
+    paddingTop:445
   },
 });

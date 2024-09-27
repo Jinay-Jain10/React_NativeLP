@@ -20,7 +20,7 @@ import {
   export default function Favourites(navigation){
     return(
         <View style={styles.container}> 
-            <Text style={{fontSize:30,color:'white'}}>Favourites</Text>
+            <Text style={{fontSize:30,color:'black'}}>Favourites</Text>
         </View>
     )
 }
@@ -28,7 +28,7 @@ import {
 const styles = StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor: 'black',
+      backgroundColor: 'white',
       alignItems: 'center',
       justifyContent: 'center',
       paddingVertical:50,
