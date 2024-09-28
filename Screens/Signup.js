@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import { createContext } from 'react';
 import { 
   StyleSheet,
@@ -19,19 +19,13 @@ import {
   TouchableOpacity} from 'react-native';
 
 import {Entypo} from "@expo/vector-icons";
+import { UserContext } from './UserContext';
 
 
-export const Info= createContext();
-export const InfoProvider=({children})=>{
-  const [email,setEmail]=useState("");
-  return(
-    <Info.Provider value={{email,setEmail}}>
-      {children}
-    </Info.Provider>
-  )
-}
 
-export default function HomeScreen({navigation}){
+
+const Signup=({navigation})=>{
+  const {setUser}=useContext(UserContext);
 
   const[email,setEmail]=useState("");
   const[password,setPassword]=useState("");
@@ -62,6 +56,11 @@ export default function HomeScreen({navigation}){
           setLoading(false);
           navigation.navigate("HomePage");
         }, 2000);
+        const userData={
+          email:email,
+          name:name,
+        };
+        setUser(userData);
         console.log("Submitted",name,age, email, password);
         setEmail("");
         setPassword("");
@@ -73,7 +72,6 @@ export default function HomeScreen({navigation}){
 
 
     return(
-      <Info.Provider value={{ userEmail:email,setEmail }}>
       <ScrollView>
         <KeyboardAvoidingView style={styles.container}>
         <View style={{flex:1,justifyContent:'center',alignItems:'center',position:'relative'}}>
@@ -151,9 +149,9 @@ export default function HomeScreen({navigation}){
             </View>
         </KeyboardAvoidingView>
         </ScrollView>
-        </Info.Provider>
     )
 }
+export default Signup;
 
 const styles = StyleSheet.create({
   container: {

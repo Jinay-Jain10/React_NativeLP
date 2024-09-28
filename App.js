@@ -25,8 +25,7 @@ import {
   Alert} from 'react-native';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import {Entypo} from "@expo/vector-icons";
-import { InfoProvider,Info } from './Screens/Signup';
-
+import { UserProvider } from './Screens/UserContext';
 
 
 const stack=createStackNavigator()
@@ -111,12 +110,14 @@ function TabNavigator(){
     </Tab.Navigator>
     )
 }
-export default function App() {
+const App=()=> {
   return (
-    <InfoProvider>
-    <NavigationContainer>
-      <StackNavigator/>
-    </NavigationContainer>
-    </InfoProvider>
+    <UserProvider>
+      <NavigationContainer>
+        <StackNavigator/>
+      </NavigationContainer>
+    </UserProvider>
   );
-}
+};
+
+export default App;

@@ -8,6 +8,7 @@ import {
   Modal,
   Switch,
   KeyboardAvoidingView,
+  TouchableOpacity,
   Text,
   View,
   Button,
@@ -15,21 +16,60 @@ import {
   Image, 
   ImageBackground, 
   Alert} from 'react-native';
-  import {Info} from './Signup'
- 
+import {Entypo} from "@expo/vector-icons";
+
+  
+import { UserContext } from './UserContext'; 
+import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
+
+
 const logoImage=require("./Images/user.png")
 
-export default function Profile(navigation){
-  const {email} = useContext(Info);
+const Profile=()=>{
+  const {user} =useContext(UserContext);
+
+
+  const [profileImage,setProfileImage]=useState(null);
+  const openImagePicker = () => {
+    const options = {
+      mediaType: 'photo',
+      includeBase64: false,
+      maxHeight: 2000,
+      maxWidth: 2000,
+    };
+
+    launchImageLibrary(options, (response) => {
+      if (response.didCancel) {
+        console.log('User cancelled image picker');
+      } else if (response.error) {
+        console.log('Image picker error: ', response.error);
+      } else {
+        let imageUri = response.uri || response.assets?.[0]?.uri;
+        setSelectedImage(imageUri);
+      }
+    });
+  };
 
     return(
-        <View style={styles.container}> 
-          <Image style={styles.image} source={logoImage}/>
+        <View style={styles.container}>
+          <View>
+          <TouchableOpacity style={styles.image} onPress={openImagePicker}>
+          {profileImage ? (
+            <Image source={{ uri: profileImage }} style={styles.profileImage} />
+          ) : (
+            <View style={styles.placeholder}>
+              <Entypo name="user" size={40} color="white" />
+            </View>
+          )}
+        </TouchableOpacity>
+          </View>
+          
+          {/* <Image style={styles.image} source={logoImage}/> */}
           <View style={{paddingTop:20}}>
           <Text style={{fontSize:20,fontWeight:700,color:'black',paddingTop:20}}>Name:</Text>
-          <TextInput style={styles.textInput} >User</TextInput>
+          <TextInput style={styles.textInput} >{user.name}</TextInput>
           <Text style={{fontSize:20,fontWeight:700,color:'black',paddingTop:20}}>Email:</Text>
-          <TextInput style={styles.textInput} >{email}</TextInput>
+          <TextInput style={styles.textInput} >{user.email}</TextInput>
           </View>
         </View>
     )
@@ -45,7 +85,8 @@ const styles = StyleSheet.create({
     image:{
       height:100,
       width:100,
-      borderRadius:20
+      borderRadius:20,
+      backgroundColor:'black'
     },
     textInput:{
       fontSize:20,
@@ -60,3 +101,5 @@ const styles = StyleSheet.create({
       color:"gray",
     },
 });   
+
+export default Profile;
