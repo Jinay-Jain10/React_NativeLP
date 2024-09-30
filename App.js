@@ -26,6 +26,7 @@ import {
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import {Entypo} from "@expo/vector-icons";
 import { UserProvider } from './Screens/UserContext';
+import { FavouritesProvider } from './Screens/context/FavouritesContext';
 
 
 const stack=createStackNavigator()
@@ -113,9 +114,11 @@ function TabNavigator(){
 const App=()=> {
   return (
     <UserProvider>
-      <NavigationContainer>
-        <StackNavigator/>
-      </NavigationContainer>
+      <FavouritesProvider>
+        <NavigationContainer>
+          <StackNavigator/>
+        </NavigationContainer>
+      </FavouritesProvider>
     </UserProvider>
   );
 };

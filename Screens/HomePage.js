@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import React, {useState} from 'react';
+import React, {useCallback, useContext, useState} from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
@@ -18,19 +18,25 @@ import {
   TextInput,
   Image, 
   ImageBackground, 
-  Alert} from 'react-native';
-import Favourites from './Favourites';
-import Profile from './Profile'
+  Alert,
+  TouchableOpacity} from 'react-native';
 import { useEffect } from 'react';
 import axios from 'axios';
+import {Entypo} from "@expo/vector-icons";
+import { FavouritesContext } from './context/FavouritesContext';
+import { UserContext } from './UserContext';
 
 
+const apiKey= 'edc4d9f10438f15ca8b98605eca2464a'
+const baseURL='https://api.themoviedb.org/3'
 
-  export default function HomePage(navigation){
+
+const HomePage=({})=>{
+
+    const {addToFavourites}=useContext(FavouritesContext);
     const [data,setData]=useState([]);
     const [loading,setLoading]=useState(true);
-    const apiKey= 'edc4d9f10438f15ca8b98605eca2464a'
-    const baseURL='https://api.themoviedb.org/3'
+    const [bookmark,setBookmark]=useState(false);
     const popularMoviesEndpoint=`${baseURL}/movie/popular?language=en-US&page=1?api_key=${apiKey}`
 
    
@@ -69,6 +75,10 @@ import axios from 'axios';
       getPopularMovies();
     },[])
 
+    const handleAddToFavourites=(movie)=>{
+      setBookmark(false);
+      addToFavourites(movie);
+    }
 
     return(
       <View style={styles.container} >
@@ -78,20 +88,29 @@ import axios from 'axios';
           data.length ? 
           <FlatList
           data={data}
-          renderItem={({item})=>
+          keyExtractor={(item)=>item.id.toString()}
+          renderItem={({item})=>(
 
           <View style={styles.box}>
             <Image 
             source={{uri:`https://image.tmdb.org/t/p/w500${item.poster_path}` }}
             style={{width:100,height:100,borderRadius:10}}
             />
-            <View>
+            <View >
+              <TouchableOpacity onPress={()=>handleAddToFavourites(item)}>
+              <Entypo 
+              name={bookmark ? "heart": "heart-outlined"}
+              size={28}
+              color={bookmark ? "red" : "black"}
+              />
+              </TouchableOpacity>
             <Text style={{fontSize:20,fontWeight:700,color:'black',paddingHorizontal:15}}>{item.title}</Text>
-            <Text numberOfLines={2} style={{fontSize:10,flexShrink:1,color:'black',paddingVertical:5,paddingHorizontal:15,flex:1}}>{item.overview}</Text>
+            {/* <Text numberOfLines={1} style={{fontSize:10,flexShrink:1,color:'black',paddingVertical:5,paddingHorizontal:15,flex:1}}>{item.overview}</Text> */}
             <Text style={{fontSize:10,flexShrink:1,fontWeight:600,color:'gray',paddingHorizontal:15,}}>Release Date: {item.release_date}</Text>
             <Text style={{fontSize:10,flexShrink:1,fontWeight:600,color:'gray',paddingHorizontal:15,}}>Popularity: {item.popularity}</Text>
             </View>
-          </View>}
+          </View>
+          )}
           />
           :
           null          
@@ -100,6 +119,8 @@ import axios from 'axios';
       </View>
     )
   }
+
+  export default HomePage;
 
   const styles = StyleSheet.create({
     container: {

@@ -20,48 +20,52 @@ import {Entypo} from "@expo/vector-icons";
 
   
 import { UserContext } from './UserContext'; 
-import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
+import * as ImagePicker from 'expo-image-picker';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-
-const logoImage=require("./Images/user.png")
 
 const Profile=()=>{
-  const {user} =useContext(UserContext);
+  const {user,setUser} =useContext(UserContext);
+  const logoImage=user.profileImage;
+
 
 
   const [profileImage,setProfileImage]=useState(null);
-  const openImagePicker = () => {
+  const openImagePicker = async () => {
+    // Request permission to access media library
+    const permissionResult = await ImagePicker.requestMediaLibraryPermissionsAsync();
+  
+    if (permissionResult.granted === false) {
+      alert('Permission to access camera roll is required!');
+      return;
+    }
+  
     const options = {
-      mediaType: 'photo',
-      includeBase64: false,
-      maxHeight: 2000,
-      maxWidth: 2000,
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      allowsEditing: true,
+      aspect: [4, 3],
+      quality: 1,
     };
-
-    launchImageLibrary(options, (response) => {
-      if (response.didCancel) {
-        console.log('User cancelled image picker');
-      } else if (response.error) {
-        console.log('Image picker error: ', response.error);
-      } else {
-        let imageUri = response.uri || response.assets?.[0]?.uri;
-        setSelectedImage(imageUri);
-      }
-    });
+  
+    const result = await ImagePicker.launchImageLibraryAsync(options);
+  
+    if (!result.canceled) {
+      setProfileImage(result.assets[0].uri);
+    }
   };
 
     return(
         <View style={styles.container}>
           <View>
-          <TouchableOpacity style={styles.image} onPress={openImagePicker}>
-          {profileImage ? (
-            <Image source={{ uri: profileImage }} style={styles.profileImage} />
+          <View style={styles.image} >
+          {user.image ? (
+            <Image source={{ uri: user.image }} style={styles.image} />
           ) : (
-            <View style={styles.placeholder}>
+            <View style={styles.image}>
               <Entypo name="user" size={40} color="white" />
             </View>
           )}
-        </TouchableOpacity>
+        </View>
           </View>
           
           {/* <Image style={styles.image} source={logoImage}/> */}
@@ -86,7 +90,6 @@ const styles = StyleSheet.create({
       height:100,
       width:100,
       borderRadius:20,
-      backgroundColor:'black'
     },
     textInput:{
       fontSize:20,

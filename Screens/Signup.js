@@ -20,13 +20,15 @@ import {
 
 import {Entypo} from "@expo/vector-icons";
 import { UserContext } from './UserContext';
+import * as ImagePicker from 'expo-image-picker';
 
 
 
 
 const Signup=({navigation})=>{
-  const {setUser}=useContext(UserContext);
+  const {user,setUser}=useContext(UserContext);
 
+  const [profileImage,setProfileImage]=useState(null);
   const[email,setEmail]=useState("");
   const[password,setPassword]=useState("");
   const [error,setError]=useState({});
@@ -34,6 +36,29 @@ const Signup=({navigation})=>{
   const [age,setAge]=useState("");
   const[loading,setLoading]=useState(false);
   const [showPassword,setShowPassword]=useState(true);
+
+  const openImagePicker = async () => {
+    // Request permission to access media library
+    const permissionResult = await ImagePicker.requestMediaLibraryPermissionsAsync();
+  
+    if (permissionResult.granted === false) {
+      alert('Permission to access camera roll is required!');
+      return;
+    }
+  
+    const options = {
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      allowsEditing: true,
+      aspect: [4, 3],
+      quality: 1,
+    };
+  
+    const result = await ImagePicker.launchImageLibraryAsync(options);
+  
+    if (!result.canceled) {
+      setProfileImage(result.assets[0].uri);
+    }
+  };
     
     const validateForm = () => {
       const reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
@@ -59,6 +84,7 @@ const Signup=({navigation})=>{
         const userData={
           email:email,
           name:name,
+          image:profileImage,
         };
         setUser(userData);
         console.log("Submitted",name,age, email, password);
@@ -76,6 +102,23 @@ const Signup=({navigation})=>{
         <KeyboardAvoidingView style={styles.container}>
         <View style={{flex:1,justifyContent:'center',alignItems:'center',position:'relative'}}>
             <Text style={{fontSize:38,fontWeight:600 , marginBottom:50,marginTop:50, color:'black'}}>Create Account</Text>
+
+            <Text style={styles.textEmail}>Enter A profile picture:</Text>
+            <TouchableOpacity style={styles.image} onPress={openImagePicker}>
+          {profileImage ? (
+            <Image source={{ uri: profileImage }} style={styles.image} />
+          ) : (
+            <Image 
+            source={{uri:profileImage}}
+            style={styles.image}
+            />
+          )}
+          {/* <View>
+            <Image source={require("../t/ProfileLogo.png")}/>
+          </View> */}
+        </TouchableOpacity>
+
+
 
             <Text style={styles.textEmail}>Enter Your Name:</Text>
             <TextInput 
@@ -117,6 +160,7 @@ const Signup=({navigation})=>{
 
 
             <Text style={styles.textEmail}>Enter Your Password:</Text>
+            
             <TextInput 
               style={styles.textInput} 
               value={password}
@@ -136,6 +180,7 @@ const Signup=({navigation})=>{
               {error.password ? (
           <Text style={styles.errorText}>{error.password}</Text>
         ) : null}
+            
 
             {loading?(<ActivityIndicator size="large" color="#571919"/>):(
             <TouchableOpacity
@@ -193,6 +238,11 @@ const styles = StyleSheet.create({
   eye:{
     paddingLeft:190,
     position:'absolute',
-    paddingTop:445
+    paddingTop:575
+  },
+  image:{
+    height:100,
+    width:100,
+    borderRadius:20,
   },
 });
