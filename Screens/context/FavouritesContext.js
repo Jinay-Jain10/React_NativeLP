@@ -13,9 +13,15 @@ export const FavouritesProvider =({children})=>{
         setFavourites(favourites.filter((movie)=>movie.title!==title));
     };
 
+    const isFavourite=(title)=>{
+        return favourites.some((movie)=>movie.title==title);
+    }
+
     return(
-        <FavouritesContext.Provider value={{favourites,addToFavourites,removeFromFavourites}}>
+        <FavouritesContext.Provider value={{favourites,addToFavourites,removeFromFavourites,isFavourite}}>
             {children}
         </FavouritesContext.Provider>
     );
 };
+
+

@@ -182,7 +182,7 @@ const Signup=({navigation})=>{
         ) : null}
             
 
-            {loading?(<ActivityIndicator size="large" color="#571919"/>):(
+            {loading?(<ActivityIndicator size="large" color="#8c7bba"/>):(
             <TouchableOpacity
             style={{height:40, width:100, backgroundColor:'#8c7bba',borderRadius:10 ,justifyContent:'center',alignItems:'center'}}
              color={'black'}

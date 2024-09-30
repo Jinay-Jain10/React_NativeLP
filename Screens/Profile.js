@@ -57,7 +57,7 @@ const Profile=()=>{
     return(
         <View style={styles.container}>
           <View>
-          <View style={styles.image} >
+          <TouchableOpacity onPress={openImagePicker} style={styles.image} >
           {user.image ? (
             <Image source={{ uri: user.image }} style={styles.image} />
           ) : (
@@ -65,7 +65,8 @@ const Profile=()=>{
               <Entypo name="user" size={40} color="white" />
             </View>
           )}
-        </View>
+        </TouchableOpacity>
+        
           </View>
           
           {/* <Image style={styles.image} source={logoImage}/> */}
@@ -74,6 +75,12 @@ const Profile=()=>{
           <TextInput style={styles.textInput} >{user.name}</TextInput>
           <Text style={{fontSize:20,fontWeight:700,color:'black',paddingTop:20}}>Email:</Text>
           <TextInput style={styles.textInput} >{user.email}</TextInput>
+
+          <View style={{justifyContent:'center'}}>
+            <TouchableOpacity style={{paddingVertical:20,justifyContent:'center'}} title="Change Profile Picture" onPress={openImagePicker}>
+              <Text style={styles.button}>Edit Profile Picture</Text>
+            </TouchableOpacity>
+          </View>
           </View>
         </View>
     )
@@ -103,6 +110,19 @@ const styles = StyleSheet.create({
       paddingHorizontal:10,
       color:"gray",
     },
+    button:{
+      justifyContent:'center',
+      alignItems:'center',
+      backgroundColor:'#8c7bba',
+      width:150,
+      height:40,
+      borderRadius:20,
+      marginLeft:70,
+      paddingHorizontal:15,
+      paddingVertical:10,
+      fontWeight:'700',
+      color:'white'
+    }
 });   
 
 export default Profile;

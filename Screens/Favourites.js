@@ -31,11 +31,11 @@ const Favourites=()=>{
           {favourites.length>0 ? (
             <FlatList
             data={favourites}
-            keyExtractor={(item)=>item.title}
+            keyExtractor={(item)=>item.id.toString()}
             renderItem={({item})=>(
               <View > 
-                <Image source={{uri:`https://image.tmdb.org/t/p/w500${item.poster_path}`}}
-                style={{width:100,heigt:150}}
+                <Image source={{uri:`https://image.tmdb.org/t/p/w500${item.poster_path}`,}}
+                style={{width:100,heigt:100}}
                 />
                 <Text style={{fontSize:20,marginTop:10}}>{item.title}</Text>
                 <TouchableOpacity style={styles.remove} onPress={()=>handleRemoveFromFavourites(item.title)}>
