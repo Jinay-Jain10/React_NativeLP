@@ -25,12 +25,11 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 const Profile=()=>{
-  const {user,setUser} =useContext(UserContext);
-  const logoImage=user.profileImage;
+  const {profile,updateProfilePicture} =useContext(UserContext);
 
 
 
-  const [profileImage,setProfileImage]=useState(null);
+  // const [profileImage,setProfileImage]=useState(null);
   const openImagePicker = async () => {
     // Request permission to access media library
     const permissionResult = await ImagePicker.requestMediaLibraryPermissionsAsync();
@@ -50,16 +49,16 @@ const Profile=()=>{
     const result = await ImagePicker.launchImageLibraryAsync(options);
   
     if (!result.canceled) {
-      setProfileImage(result.assets[0].uri);
+      updateProfilePicture(result.assets[0].uri);
     }
   };
 
     return(
         <View style={styles.container}>
           <View>
-          <TouchableOpacity onPress={openImagePicker} style={styles.image} >
-          {user.image ? (
-            <Image source={{ uri: user.image }} style={styles.image} />
+          <TouchableOpacity  style={styles.image} >
+          {profile.profilePicture ? (
+            <Image source={{ uri: profile.profilePicture }} style={styles.image} />
           ) : (
             <View style={styles.image}>
               <Entypo name="user" size={40} color="white" />
@@ -72,12 +71,12 @@ const Profile=()=>{
           {/* <Image style={styles.image} source={logoImage}/> */}
           <View style={{paddingTop:20}}>
           <Text style={{fontSize:20,fontWeight:700,color:'black',paddingTop:20}}>Name:</Text>
-          <TextInput style={styles.textInput} >{user.name}</TextInput>
+          <TextInput style={styles.textInput} >{profile.name}</TextInput>
           <Text style={{fontSize:20,fontWeight:700,color:'black',paddingTop:20}}>Email:</Text>
-          <TextInput style={styles.textInput} >{user.email}</TextInput>
+          <TextInput style={styles.textInput} >{profile.email}</TextInput>
 
           <View style={{justifyContent:'center'}}>
-            <TouchableOpacity style={{paddingVertical:20,justifyContent:'center'}} title="Change Profile Picture" onPress={openImagePicker}>
+            <TouchableOpacity style={{paddingVertical:20,justifyContent:'center'}}  onPress={openImagePicker}>
               <Text style={styles.button}>Edit Profile Picture</Text>
             </TouchableOpacity>
           </View>

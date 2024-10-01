@@ -26,7 +26,7 @@ import * as ImagePicker from 'expo-image-picker';
 
 
 const Signup=({navigation})=>{
-  const {user,setUser}=useContext(UserContext);
+  const {updateProfilePicture,updateUsername,updateEmail}=useContext(UserContext);
 
   const [profileImage,setProfileImage]=useState(null);
   const[email,setEmail]=useState("");
@@ -57,6 +57,7 @@ const Signup=({navigation})=>{
   
     if (!result.canceled) {
       setProfileImage(result.assets[0].uri);
+      updateProfilePicture(result.assets[0].uri);
     }
   };
     
@@ -81,12 +82,8 @@ const Signup=({navigation})=>{
           setLoading(false);
           navigation.navigate("HomePage");
         }, 2000);
-        const userData={
-          email:email,
-          name:name,
-          image:profileImage,
-        };
-        setUser(userData);
+        updateUsername(name);
+        updateEmail(email);
         console.log("Submitted",name,age, email, password);
         setEmail("");
         setPassword("");
