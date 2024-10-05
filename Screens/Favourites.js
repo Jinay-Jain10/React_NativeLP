@@ -36,17 +36,19 @@ const Favourites=()=>{
             renderItem={({item})=>(
               <View style={styles.box}> 
                 <Image source={{uri:`https://image.tmdb.org/t/p/w500${item.poster_path}`,}}
-                style={{width:100,heigt:100,borderRadius:10}}
+                style={{width:100,heigt:150,borderRadius:10}}
                 />
-                <Text style={{fontSize:20,marginTop:10,marginLeft:10,position:"relative"}}>{item.title}</Text>
+                <Text style={{fontSize:20,marginTop:10,marginLeft:10,position:"relative",alignItems:'center'}}>{item.title}</Text>
                 <TouchableOpacity style={styles.remove} onPress={()=>handleRemoveFromFavourites(item.title)}>
                   {/* <Text style={{color:'white',fontSize:15}}>Remove</Text> */}
                   <AntDesign name="delete" size={24} color="black" />
                 </TouchableOpacity>
-               
               </View>
+              
             )}
+            
             />
+            
           ):(
             <Text style={{fontSize:20}}>No Favourites.</Text>
           )}
@@ -64,19 +66,18 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     paddingTop: 10,
     alignItems: "center",
+    paddingBottom:10
   },
     remove:{
-      height:30,
-      width:150,
-      borderRadius:10,
-      marginTop:60,
-      paddingRight:110,
-      position:"relative"
+      marginLeft:270,
+      position:"absolute",
+      marginTop:100
     },
     box: {
       flexDirection: "row",
       marginTop: 30,
-      height:100,
-      marginLeft:10,
+      height:150,
+      width:320,
+      borderRadius:10,
     },
 });   

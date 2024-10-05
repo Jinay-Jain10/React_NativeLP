@@ -78,7 +78,7 @@ const HomePage = ({}) => {
       <View style={styles.box}>
         <Image
           source={{ uri: `https://image.tmdb.org/t/p/w500${item.poster_path}` }}
-          style={{ width: 100, height: 100, borderRadius: 10 }}
+          style={{ width: 100, height: 150, borderRadius: 10 }}
         />
         <View>
           <TouchableOpacity
@@ -93,7 +93,7 @@ const HomePage = ({}) => {
               color={favourite ? "red" : "black"}
             />
           </TouchableOpacity>
-          <Text style={{fontSize: 20,fontWeight: 700,color: "black",paddingHorizontal: 15,}}>{item.title}</Text>
+          <Text numberOfLines={1} style={{fontSize:16,fontWeight:900,flexShrink:1,color:'black',paddingHorizontal:15,flex:1}}>{item.title}</Text>
           {/* <Text numberOfLines={1} style={{fontSize:10,flexShrink:1,color:'black',paddingVertical:5,paddingHorizontal:15,flex:1}}>{item.overview}</Text> */}
           <Text style={{fontSize: 10,flexShrink: 1,fontWeight: 600,color: "gray",paddingHorizontal: 15,}}>Release Date: {item.release_date}</Text>
           <Text style={{fontSize: 10,flexShrink: 1,fontWeight: 600,color: "gray",paddingHorizontal: 15,}}>Popularity: {item.popularity}</Text>
