@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import React, {useState,useContext} from 'react';
+import React, {useState,useContext,useEffect} from 'react';
 import { 
   StyleSheet,
   ActivityIndicator,
@@ -17,6 +17,9 @@ import {
   ImageBackground, 
   Alert} from 'react-native';
 import {Entypo} from "@expo/vector-icons";
+import Ionicons from '@expo/vector-icons/Ionicons';
+import { useNavigation } from "@react-navigation/native";
+
 
   
 import { UserContext } from './UserContext'; 
@@ -26,6 +29,16 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Profile=()=>{
   const {profile,updateProfilePicture} =useContext(UserContext);
+
+  const navigation = useNavigation();
+
+  useEffect(() => {
+    navigation.setOptions({
+      headerShown: true,
+      headerTransparent: true,
+      headerTitle: "Search",
+    });
+  }, []);
 
 
 
@@ -55,7 +68,14 @@ const Profile=()=>{
 
     return(
         <View style={styles.container}>
-          <View>
+            <View style={{backgroundColor:'#8c7bba',height:90, width:'100%'}}>
+            <TouchableOpacity style={{paddingTop:45,paddingLeft:25}} onPress={()=>navigation.navigate("Home")}>
+                <Ionicons name="arrow-back" size={28} color="black" />     
+            </TouchableOpacity>
+            
+            </View>
+            <Text style={{fontSize:28, fontWeight:'bold',marginBottom:5,marginTop:15}}>Profile</Text>
+          <View style={{marginTop:20}}>
           <TouchableOpacity  style={styles.image} >
           {profile.profilePicture ? (
             <Image source={{ uri: profile.profilePicture }} style={styles.image} />
@@ -90,7 +110,6 @@ const styles = StyleSheet.create({
       flex: 1,
       backgroundColor: 'white',
       alignItems: 'center',
-      paddingVertical:50,
     },
     image:{
       height:100,

@@ -26,11 +26,23 @@ import axios from "axios";
 import { Entypo } from "@expo/vector-icons";
 import { FavouritesContext } from "./context/FavouritesContext";
 import { UserContext } from "./UserContext";
+import { useNavigation } from "@react-navigation/native";
+
 
 const apiKey = "edc4d9f10438f15ca8b98605eca2464a";
 const baseURL = "https://api.themoviedb.org/3";
 
 const HomePage = ({}) => {
+  const navigation = useNavigation();
+
+  useEffect(() => {
+    navigation.setOptions({
+      headerShown: true,
+      headerTransparent: true,
+      headerTitle: "Search",
+    });
+  }, []);
+
   const { addToFavourites, removeFromFavourites, isFavourite } =
     useContext(FavouritesContext);
   const [data, setData] = useState([]);
@@ -104,7 +116,13 @@ const HomePage = ({}) => {
 
   return (
     <View style={styles.container}>
-      <Text style={{fontSize:25,color:'black',alignItems:'center'}}>Popular Movies</Text>
+    <View style={{backgroundColor:'#8c7bba',height:90, width:'100%',justifyContent:'center',alignItems:'center'}}>
+    <Text style={{fontSize:23,color:'black',marginTop:20,fontWeight:700}}>Home Page</Text>
+    </View>
+      <Text style={{fontSize:30,color:'black',alignItems:'center',marginTop:15}}>Popular Movies</Text>
+      <TouchableOpacity onPress={()=>navigation.navigate("Chatbot")}>
+        <Text>Click here to go to our Chatbot</Text>
+      </TouchableOpacity>
       {loading ? (
         <View>
           <ActivityIndicator size='large' color='#8c7bba'/>
@@ -113,6 +131,7 @@ const HomePage = ({}) => {
       data={data}
       keyExtractor={(item)=>item.id.toString()}
       renderItem={renderMovieItem}
+      showsVerticalScrollIndicator={false}
       />
     }
     </View>
@@ -125,7 +144,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "white",
-    paddingTop: 10,
     alignItems: "center",
   },
   box: {

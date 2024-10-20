@@ -7,6 +7,7 @@ import Signup from "./Screens/Signup";
 import HomePage from "./Screens/HomePage";
 import Favourites from "./Screens/Favourites";
 import Profile from "./Screens/Profile";
+import Chatbot from './Screens/Chatbot';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import { 
   StyleSheet,
@@ -61,7 +62,8 @@ function StackNavigator(){
     />
     <stack.Screen name="Login" component={Login}/>
     <stack.Screen name="Signup" component={Signup}/>
-    <stack.Screen name="HomePage" component={TabNavigator}/>
+    <stack.Screen name="HomePage" component={TabNavigator} options={{headerShown:false}}/>
+    <stack.Screen name="Chatbot" component={Chatbot} options={{headerShown:false}}/>
   </stack.Navigator>
   )
 }
