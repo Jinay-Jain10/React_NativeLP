@@ -13,10 +13,13 @@ import ChatBubble from './ChatBubble';
 import {speak,isSpeakingAsync,stop} from 'expo-speech';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useNavigation } from "@react-navigation/native";
+import { useChat } from './context/ChatContext';
 
 
 
 const Chatbot=()=>{
+
+    const {chat,setChat}=useChat();
 
     const navigation = useNavigation();
 
@@ -27,7 +30,6 @@ const Chatbot=()=>{
     });
   }, []);
 
-    const [chat,setChat]=useState([]);
     const [userInput,setUserInput]=useState("");
     const [loading,setLoading]=useState(false);
     const [error,setError]=useState(null);
@@ -45,6 +47,7 @@ const Chatbot=()=>{
         ];
 
         setLoading(true);
+        setChat(updatedChat);
 
         try{
             const response= await axios.post(
@@ -94,7 +97,7 @@ const Chatbot=()=>{
         <ChatBubble
             role={item.role}
             text={item.parts[0].text}
-            onSpeech={()=>handleSpeech(item.part[0].text)}
+            onSpeech={()=>handleSpeech(item.parts[0].text)}
         />
     );
 
@@ -123,9 +126,7 @@ const Chatbot=()=>{
                     onChangeText={setUserInput}
                 />
                 <TouchableOpacity style={styles.button} onPress={handleUserInput}>
-                    <Text style={styles.buttonText}>
-                        Send
-                    </Text>
+                <Ionicons name="send" size={24} color="black" />
                 </TouchableOpacity>
             </View>
 
@@ -173,11 +174,11 @@ const styles = StyleSheet.create({
     },
     button:{
         padding:10,
-        backgroundColor:"#007aff",
+        backgroundColor:"#95A4DE",
         borderRadius:25,
     },
     buttonText:{
-        color:'#fff',
+        color:'black',
         textAlign:'center'
     },
     loading:{

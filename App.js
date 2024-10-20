@@ -28,7 +28,7 @@ import { createMaterialBottomTabNavigator } from '@react-navigation/material-bot
 import {Entypo} from "@expo/vector-icons";
 import { UserProvider } from './Screens/UserContext';
 import { FavouritesProvider } from './Screens/context/FavouritesContext';
-
+import { ChatProvider } from './Screens/context/ChatContext';
 
 const stack=createStackNavigator()
 const Tab=createMaterialBottomTabNavigator()
@@ -116,11 +116,13 @@ function TabNavigator(){
 const App=()=> {
   return (
     <UserProvider>
+    <ChatProvider>
       <FavouritesProvider>
         <NavigationContainer>
           <StackNavigator/>
         </NavigationContainer>
       </FavouritesProvider>
+      </ChatProvider>
     </UserProvider>
   );
 };

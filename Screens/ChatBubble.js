@@ -37,15 +37,15 @@ const styles=StyleSheet.create({
     },
     userChatItem:{
         alignSelf:'flex-end',
-        backgroundColor:"#007aff",
+        backgroundColor:"white",
     },
     modelChatItem:{
         alignSelf:'flex-start',
-        backgroundColor:'#000',
+        backgroundColor:'#95A4DE',
     },
     chatText:{
         fontSize:16,
-        color:'#fff',
+        color:"black",
     },
     speakerIcon:{
         position:'absolute',

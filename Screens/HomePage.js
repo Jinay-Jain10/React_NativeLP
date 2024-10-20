@@ -119,10 +119,15 @@ const HomePage = ({}) => {
     <View style={{backgroundColor:'#8c7bba',height:90, width:'100%',justifyContent:'center',alignItems:'center'}}>
     <Text style={{fontSize:23,color:'black',marginTop:20,fontWeight:700}}>Home Page</Text>
     </View>
-      <Text style={{fontSize:30,color:'black',alignItems:'center',marginTop:15}}>Popular Movies</Text>
-      <TouchableOpacity onPress={()=>navigation.navigate("Chatbot")}>
-        <Text>Click here to go to our Chatbot</Text>
+    <View style={{flexDirection:'row'}}>
+      <Text style={{fontSize:30,color:'black',alignItems:'center',marginTop:15,marginLeft:30}}>Popular Movies</Text>
+      <View style={{marginLeft:40,marginTop:20,flex:1,justifyContent:'space-evenly',alignItems:'center'}}>
+      <TouchableOpacity onPress={()=>navigation.navigate("Chatbot")} >
+        <Entypo name="chat" size={30} color="black" />
       </TouchableOpacity>
+      </View>
+      </View>
+      <View>
       {loading ? (
         <View>
           <ActivityIndicator size='large' color='#8c7bba'/>
@@ -133,7 +138,9 @@ const HomePage = ({}) => {
       renderItem={renderMovieItem}
       showsVerticalScrollIndicator={false}
       />
+      
     }
+    </View>
     </View>
   )
 };
